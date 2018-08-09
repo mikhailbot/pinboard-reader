@@ -19,7 +19,7 @@ defmodule PinboardReader.Mixfile do
   def application do
     [
       mod: {PinboardReader.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :sbroker, :httpoison, :readability]
     ]
   end
 
@@ -35,7 +35,10 @@ defmodule PinboardReader.Mixfile do
       {:phoenix, "~> 1.3.4"},
       {:phoenix_pubsub, "~> 1.0"},
       {:gettext, "~> 0.11"},
-      {:cowboy, "~> 1.0"}
+      {:cowboy, "~> 1.0"},
+      {:httpoison, "~> 0.13.0"},
+      {:readability, "~> 0.9"},
+      {:sbroker, "~> 1.0-beta"},
     ]
   end
 end
