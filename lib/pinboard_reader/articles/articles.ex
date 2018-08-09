@@ -6,9 +6,8 @@ defmodule PinboardReader.Articles do
 
   def process(articles) do
     articles
-    |> Enum.each(fn (article) ->
+    |> Enum.each(fn article ->
       perform({:fetch, article})
-      |> IO.inspect
     end)
   end
 
