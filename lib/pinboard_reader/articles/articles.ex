@@ -33,11 +33,15 @@ defmodule PinboardReader.Articles do
 
   def get(url) do
     with {:ok, %HTTPoison.Response{} = response} <- HTTPoison.get(url, [], follow_redirect: true) do
-      article =
-        response.body
-        |> parse()
+      try do
+        article =
+          response.body
+          |> parse()
 
-      {:ok, article}
+        {:ok, article}
+      rescue
+        _ -> {:error}
+      end
     else
       {:error, %HTTPoison.Error{} = error} ->
         {:error, error}
