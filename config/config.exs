@@ -12,6 +12,12 @@ config :pinboard_reader, PinboardReaderWeb.Endpoint,
   render_errors: [view: PinboardReaderWeb.ErrorView, accepts: ~w(json)],
   pubsub: [name: PinboardReader.PubSub, adapter: Phoenix.PubSub.PG2]
 
+# CORS
+config :cors_plug,
+  origin: ["*"],
+  max_age: 86400,
+  methods: ["GET", "POST"]
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

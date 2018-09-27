@@ -40,6 +40,9 @@ defmodule PinboardReaderWeb.Endpoint do
     signing_salt: "8aSwpOxe"
   )
 
+  # CORS Support
+  plug CORSPlug
+
   plug(PinboardReaderWeb.Router)
 
   @doc """
