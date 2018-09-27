@@ -6,9 +6,7 @@ defmodule PinboardReader.Articles do
 
   def process(articles) do
     articles
-    |> Enum.map(fn article ->
-      perform({:fetch, article})
-    end)
+    |> Enum.map(fn article -> perform({:fetch, article}) end)
   end
 
   defp perform({action, args} = params) do
@@ -37,7 +35,7 @@ defmodule PinboardReader.Articles do
           response.body
           |> parse()
 
-        {:ok, article}
+        {:ok, %{href: url, article: article}}
       rescue
         _ -> {:error}
       end

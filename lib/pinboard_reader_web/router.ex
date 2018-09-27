@@ -7,5 +7,7 @@ defmodule PinboardReaderWeb.Router do
 
   scope "/api", PinboardReaderWeb do
     pipe_through(:api)
+
+    post("/articles", ArticleController, :index)
   end
 end

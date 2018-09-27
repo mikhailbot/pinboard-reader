@@ -32,7 +32,7 @@ defmodule PinboardReader.Articles.Worker do
     case Articles.get(params) do
       {:ok, article} -> {:ok, article}
       {:error, %HTTPoison.Error{} = error} -> {:error, error}
-      _ -> {:error, %{reason: "error processing article"}}
+      _ -> {:error, %{reason: "error processing article", href: params}}
     end
   end
 end
