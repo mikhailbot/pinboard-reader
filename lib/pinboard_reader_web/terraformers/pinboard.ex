@@ -16,13 +16,12 @@ defmodule PinboardReaderWeb.Terraformers.Pinboard do
           {"Authorization", token}
         ],
         params: Map.to_list(params)
-      )
+      ) |> IO.inspect
 
     send_response({:ok, conn, res})
   end
 
-  defp send_response({:ok, conn, %{headers: headers, status_code: status_code, body: body}}) do
-    conn = %{conn | resp_headers: headers}
+  defp send_response({:ok, conn, %{status_code: status_code, body: body}}) do
     send_resp(conn, status_code, body)
   end
 end
