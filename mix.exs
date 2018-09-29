@@ -41,6 +41,7 @@ defmodule PinboardReader.Mixfile do
       {:sbroker, "~> 1.0-beta"},
       {:terraform, "~> 1.0.1"},
       {:cors_plug, "~> 1.5"},
+      {:gproc, "~> 0.6.1"},
     ]
   end
 end
