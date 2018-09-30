@@ -37,11 +37,11 @@ defmodule PinboardReader.Articles do
 
         {:ok, %{href: url, article: article}}
       rescue
-        _ -> {:error}
+        _ -> {:error, %{reason: "error processing article", href: url}}
       end
     else
       {:error, %HTTPoison.Error{} = error} ->
-        {:error, error}
+        {:error, %{reason: error, href: url}}
     end
   end
 
