@@ -5,8 +5,8 @@ defmodule PinboardReader.Users.Supervisor do
     Supervisor.start_link(__MODULE__, [], name: :user_supervisor)
   end
 
-  def start_user_cache(username) do
-    Supervisor.start_child(:user_supervisor, [username])
+  def start_user_cache(token) do
+    Supervisor.start_child(:user_supervisor, [token])
   end
 
   def init(_) do

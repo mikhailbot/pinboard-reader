@@ -16,7 +16,7 @@ defmodule PinboardReaderWeb.Terraformers.Pinboard do
           {"Authorization", token}
         ],
         params: Map.to_list(params)
-      ) |> IO.inspect
+      )
 
     send_response({:ok, conn, res})
   end
