@@ -39,8 +39,8 @@ defmodule PinboardReader.Mixfile do
       {:httpoison, "~> 1.3.1", override: true},
       {:readability, "~> 0.9"},
       {:sbroker, "~> 1.0-beta"},
-      {:terraform, "~> 1.0.1"},
       {:cors_plug, "~> 1.5"},
+      {:gproc, "~> 0.6.1"},
     ]
   end
 end

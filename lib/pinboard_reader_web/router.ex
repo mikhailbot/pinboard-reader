@@ -1,6 +1,5 @@
 defmodule PinboardReaderWeb.Router do
   use PinboardReaderWeb, :router
-  use Terraform, terraformer: PinboardReaderWeb.Terraformers.Pinboard
 
   pipeline :api do
     plug(:accepts, ["json"])
@@ -10,5 +9,6 @@ defmodule PinboardReaderWeb.Router do
     pipe_through(:api)
 
     post("/articles", ArticleController, :index)
+    get("/users", UserController, :index)
   end
 end

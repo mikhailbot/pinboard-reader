@@ -12,7 +12,8 @@ defmodule PinboardReader.Application do
       supervisor(PinboardReaderWeb.Endpoint, []),
       # Start your own worker by calling: PinboardReader.Worker.start_link(arg1, arg2, arg3)
       # worker(PinboardReader.Worker, [arg1, arg2, arg3]),
-      supervisor(PinboardReader.Articles.Supervisor, [])
+      supervisor(PinboardReader.Articles.Supervisor, []),
+      supervisor(PinboardReader.Users.Supervisor, [])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
