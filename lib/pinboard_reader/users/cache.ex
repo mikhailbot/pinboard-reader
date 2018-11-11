@@ -41,6 +41,7 @@ defmodule PinboardReader.Users.Cache do
   def handle_call(:get_all_articles, _from, state) do
     state =
       state
+      |> update_timestamps
       |> update_cache
 
     {:reply, {:ok, state.all}, state}
@@ -49,6 +50,7 @@ defmodule PinboardReader.Users.Cache do
   def handle_call(:get_newest_articles, _from, state) do
     state =
       state
+      |> update_timestamps
       |> update_cache
 
     {:reply, {:ok, state.newest}, state}
@@ -57,28 +59,30 @@ defmodule PinboardReader.Users.Cache do
   def handle_call(:get_oldest_articles, _from, state) do
     state =
       state
+      |> update_timestamps
       |> update_cache
 
     {:reply, {:ok, state.oldest}, state}
   end
 
   defp update_cache(%{date: date, last_checked: last_checked} = state) do
+
     cond do
       is_bitstring(last_checked) ->
         # No data, fetching data for first time
 
         state
-        |> update_timestamps
         |> fetch_data
         |> populate_lists
+        |> update_last_checked
 
       DateTime.compare(date, last_checked) != :lt ->
         # There's been changes since we last checked, so getting new data
 
         state
-        |> update_timestamps
         |> fetch_data
         |> populate_lists
+        |> update_last_checked
 
       true ->
         # We've checked more recently than the latest changes, no new data available
@@ -112,8 +116,12 @@ defmodule PinboardReader.Users.Cache do
         |> Map.get("update_time")
         |> DateTime.from_iso8601()
 
-      %{state | date: date, last_checked: DateTime.utc_now()}
+      %{state | date: date}
     end
+  end
+
+  defp update_last_checked(state) do
+    %{state | last_checked: DateTime.utc_now()}
   end
 
   defp populate_lists(state) do
